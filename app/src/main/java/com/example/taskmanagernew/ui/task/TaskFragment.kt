@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanagernew.R
+import com.example.taskmanagernew.data.model.Task
 import com.example.taskmanagernew.databinding.FragmentTaskBinding
-import com.example.taskmanagernew.model.Task
 
 
 class TaskFragment : Fragment() {
@@ -41,7 +41,7 @@ class TaskFragment : Fragment() {
         }
     }
 private fun saveTask(){
-    val data=Task(
+    val data= Task(
         binding.etTitle2.text.toString(),
         binding.etDesc2.text.toString()
 

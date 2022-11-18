@@ -1,16 +1,15 @@
 package com.example.taskmanagernew.ui.onBoarding.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanagernew.R
+import com.example.taskmanagernew.data.model.OnBoard
 import com.example.taskmanagernew.databinding.ItemOnBoardingBinding
-import com.example.taskmanagernew.model.OnBoard
-import kotlin.reflect.KFunction1
+import kotlin.reflect.KFunction0
 
-class OnBoardingAdapter(val onClick: KFunction1<View, Unit>): RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
+class OnBoardingAdapter(val onClick: KFunction0<Unit>): RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
     private val arrayList = arrayListOf <OnBoard> (
         OnBoard(
             "",
@@ -60,10 +59,10 @@ class OnBoardingAdapter(val onClick: KFunction1<View, Unit>): RecyclerView.Adapt
             binding.tvDESC.text = onBoard.desc
 
             binding.skip.setOnClickListener {
-                onClick(binding.skip)
+                onClick()
             }
             binding.btnStart.setOnClickListener {
-             onClick(binding.btnStart)
+             onClick()
             }
             if (adapterPosition == 0) {
                 binding.image.setImageResource(R.drawable.ic_task)

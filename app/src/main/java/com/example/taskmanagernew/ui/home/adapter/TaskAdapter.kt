@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.taskmanagernew.databinding.ItemTaskBinding
-import com.example.taskmanagernew.model.Task
+import com.example.taskmanagernew.data.model.Task
 
 class TaskAdapter(): Adapter<TaskAdapter.TaskViewHolder>() {
     private val tasks: ArrayList<Task> = arrayListOf()
