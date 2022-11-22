@@ -56,6 +56,11 @@ companion object{
         binding.profileImage.setOnClickListener {
             getContent.launch(CONTENT_TYPE)
         }
+        binding.profileImage.setOnLongClickListener {
+            pref.deleteImage()
+            binding.profileImage.loadImage(pref.getImage().toString())
+            false
+        }
 
         }
     }

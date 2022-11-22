@@ -46,6 +46,7 @@ return pref.getString(AGE_PROFILE,"")
     fun getImage():String?{
         return pref.getString(IMAGE_PROFILE,"")
     }
+fun deleteImage(){
+    pref.edit().remove(IMAGE_PROFILE).apply ()
 
-
-}
+}}
