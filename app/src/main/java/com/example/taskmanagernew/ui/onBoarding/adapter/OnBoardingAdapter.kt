@@ -53,6 +53,7 @@ class OnBoardingAdapter(val onClick: KFunction0<Unit>): RecyclerView.Adapter<OnB
     inner class OnBoardingViewHolder(private val binding: ItemOnBoardingBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(onBoard: OnBoard) {
+            binding.root
             binding.btnStart.isVisible = adapterPosition == arrayList.lastIndex
             binding.skip.isVisible = adapterPosition != arrayList.lastIndex
             binding.tvTITLE.text = onBoard.title
@@ -72,9 +73,6 @@ class OnBoardingAdapter(val onClick: KFunction0<Unit>): RecyclerView.Adapter<OnB
             }
             if (adapterPosition == 2) {
                 binding.image.setImageResource(R.drawable.ic_task2)
-               // binding.ind1.setImageResource(R.drawable.unselected)
-                //binding.ind2.setImageResource(R.drawable.unselected)
-                //binding.ind3.setImageResource(R.drawable.selected)
                 binding.next.isVisible = false
                 binding.btnNext.isVisible = false
                 binding.imageSkip.isVisible = false

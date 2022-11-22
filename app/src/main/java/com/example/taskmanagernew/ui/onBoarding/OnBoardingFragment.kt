@@ -8,12 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanagernew.data.local.Pref
 import com.example.taskmanagernew.databinding.FragmentOnBoardingBinding
-import com.example.taskmanagernew.databinding.ItemOnBoardingBinding
 import com.example.taskmanagernew.ui.onBoarding.adapter.OnBoardingAdapter
 
 class OnBoardingFragment : Fragment() {
     private lateinit var binding: FragmentOnBoardingBinding
-    private lateinit var itemOnBoard: ItemOnBoardingBinding
     private lateinit var pref: Pref
 
 
