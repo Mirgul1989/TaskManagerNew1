@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
+import com.example.taskmanagernew.App
 import com.example.taskmanagernew.R
 import com.example.taskmanagernew.data.model.Task
 import com.example.taskmanagernew.databinding.FragmentTaskBinding
@@ -42,12 +41,11 @@ class TaskFragment : Fragment() {
     }
 private fun saveTask(){
     val data= Task(
-        binding.etTitle2.text.toString(),
-        binding.etDesc2.text.toString()
+        title = binding.etTitle2.text.toString(),
+        desc= binding.etDesc2.text.toString()
 
     )
-    setFragmentResult(
-        "KeyHome", bundleOf("task" to data))
+App.db.taskDao().insert(data) //сохранение
     findNavController().navigateUp()
 
 }

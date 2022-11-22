@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
+import com.example.taskmanagernew.App
 import com.example.taskmanagernew.R
 import com.example.taskmanagernew.databinding.FragmentHomeBinding
-import com.example.taskmanagernew.data.model.Task
 import com.example.taskmanagernew.ui.home.adapter.TaskAdapter
 
 class HomeFragment : Fragment() {
@@ -40,14 +39,8 @@ class HomeFragment : Fragment() {
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFragmentResultListener(
-            "KeyHome"
-        ) { _, result ->
-        val task =result.getSerializable("task") as Task
-
-            adapter.addTask(task)
-            }
-
+        val data= App.db.taskDao().getAllTask()  //получение данных
+        adapter.addTasks(data)   //
         binding.recycleTask.adapter=adapter
         binding.fab.setOnClickListener { findNavController().navigate(R.id.taskFragment)
         }

@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.taskmanagernew.databinding.ItemTaskBinding
 import com.example.taskmanagernew.data.model.Task
+import com.example.taskmanagernew.databinding.ItemTaskBinding
 
 class TaskAdapter(): Adapter<TaskAdapter.TaskViewHolder>() {
     private val tasks: ArrayList<Task> = arrayListOf()
@@ -23,6 +23,12 @@ class TaskAdapter(): Adapter<TaskAdapter.TaskViewHolder>() {
     fun addTask(task: Task){
         tasks.add(0,task)
         notifyItemChanged(0)
+
+    }
+    fun addTasks(newTasks:List<Task>){
+        this.tasks.clear()   //очищаем
+        this.tasks.addAll(newTasks) //добавляем новый
+        notifyDataSetChanged()    //перерисовывет
 
     }
 

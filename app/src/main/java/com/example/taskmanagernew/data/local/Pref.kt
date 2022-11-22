@@ -39,8 +39,8 @@ class Pref(context:Context) {
     fun getAge(): String? {
 return pref.getString(AGE_PROFILE,"")
     }
-    fun saveImage(image:String){
-        pref.edit().putString(IMAGE_PROFILE,image).apply()
+    fun saveImage(url:String){
+        pref.edit().putString(IMAGE_PROFILE,url).apply()
 
     }
     fun getImage():String?{
