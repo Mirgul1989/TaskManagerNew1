@@ -1,9 +1,7 @@
 
 
 import android.annotation.SuppressLint
-
 import android.content.Context
-import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
@@ -60,34 +58,38 @@ class TaskAdapter(
             binding.tvDesc.text = task.desc
             itemView.setOnLongClickListener {
                 dialog(task)
-                return@setOnLongClickListener false
+                return@setOnLongClickListener true
             }
 
         }
 
-        @SuppressLint("NotifyDataSetChanged")
         private fun dialog(task: Task) {
             val alertDialog = AlertDialog.Builder(context)
             alertDialog.setTitle("Delete?")
 
-            alertDialog.setPositiveButton("YES", DialogInterface.OnClickListener { _, _ ->
-               App.db.taskDao().delete(task)
-                activity?.recreate()
-                notifyDataSetChanged();
-                DialogInterface.OnDismissListener {  }
-            })
+            alertDialog.setPositiveButton("YES") { dialogInterface, it ->
+                App.db.taskDao().delete(task)
+                taskDelete(task)
+                dialogInterface.dismiss()
+                // activity?.recreate()
+                // notifyDataSetChanged();
+                //DialogInterface.OnDismissListener { }
+            }
             alertDialog.setNegativeButton(
-                "NO",
-                DialogInterface.OnClickListener { _, _ ->
+                "NO"
+            ) { dialogInterface, it ->
+                dialogInterface.cancel()
+            }
 
-                })
             alertDialog.show()
+
+
         }
 
+        private fun taskDelete(task: Task) {
+            tasks.remove(task)
+            notifyDataSetChanged()
 
+        }
 
-
-    }
-
-
-}
+    }}
