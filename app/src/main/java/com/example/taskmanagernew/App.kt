@@ -7,10 +7,10 @@ import com.example.taskmanagernew.data.local.db.AppDataBase
 class App:Application (){
     override fun onCreate() {
         super.onCreate()
-        db = Room.databaseBuilder( //создание рума
+        db = Room.databaseBuilder(
             applicationContext,
             AppDataBase::class.java, "database-name"
-        ).allowMainThreadQueries().build() //для потока
+        ).allowMainThreadQueries().build()
     }
     companion object{
 

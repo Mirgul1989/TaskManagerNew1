@@ -9,7 +9,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.example.taskmanagernew.data.local.Pref
 import com.example.taskmanagernew.databinding.FragmentProfileBinding
 import com.example.taskmanagernew.ui.task.utils.loadImage
@@ -24,8 +23,7 @@ class ProfileFragment : Fragment() {
             imageUri:Uri?->
             binding.profileImage.loadImage(imageUri.toString())
 
-            Glide.with(this).load(imageUri.toString()).into(binding.profileImage)
-            pref.saveImage(imageUri.toString())
+
         }
 
 companion object{

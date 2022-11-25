@@ -16,22 +16,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var pref: Pref
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        pref=Pref(this)
+        pref = Pref(this)
 
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
-        if (!pref.isBoardingShow()){
+        if (!pref.isBoardingShow()) {
             navController.navigate(R.id.onBoardingFragment)
         }
 
@@ -46,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_profile
             )
         )
-        val bottomFragment= arrayListOf(
+        val bottomFragment = arrayListOf(
             R.id.navigation_home,
             R.id.navigation_dashboard,
             R.id.navigation_notifications,

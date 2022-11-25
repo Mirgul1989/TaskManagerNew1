@@ -16,12 +16,11 @@ class TaskFragment : Fragment() {
     private lateinit var binding: FragmentTaskBinding
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       binding=FragmentTaskBinding.inflate(inflater,container,false)
+        binding = FragmentTaskBinding.inflate(inflater, container, false)
         return (binding.root)
     }
 
@@ -29,7 +28,9 @@ class TaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnSave.setOnClickListener {
 
-            if (binding.etTitle2.text.toString().isNotEmpty() || binding.etDesc2.text.toString().isNotEmpty()) {
+            if (binding.etTitle2.text.toString().isNotEmpty() || binding.etDesc2.text.toString()
+                    .isNotEmpty()
+            ) {
                 saveTask()
             } else {
                 binding.etTitle2.error = getString(R.string.error_title)
@@ -39,14 +40,15 @@ class TaskFragment : Fragment() {
 
         }
     }
-private fun saveTask(){
-    val data= Task(
-        title = binding.etTitle2.text.toString(),
-        desc= binding.etDesc2.text.toString()
 
-    )
-App.db.taskDao().insert(data) //сохранение
-    findNavController().navigateUp()
+    private fun saveTask() {
+        val data = Task(
+            title = binding.etTitle2.text.toString(),
+            desc = binding.etDesc2.text.toString()
 
-}
+        )
+        App.db.taskDao().insert(data)
+        findNavController().navigateUp()
+
+    }
 }
