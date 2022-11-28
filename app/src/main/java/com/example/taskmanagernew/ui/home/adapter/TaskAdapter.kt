@@ -54,12 +54,14 @@ class TaskAdapter(
     }
 
 
+
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
             if ((position % 1) == 0) {
                 binding.tvTitle.setBackgroundColor(ContextCompat.getColor(context, R.color.black))
                  }
+
             if (position % 1 == 0) {
                 binding.tvDesc.setBackgroundColor(
                     ContextCompat.getColor(
