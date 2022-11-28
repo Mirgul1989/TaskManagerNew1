@@ -8,7 +8,7 @@ import com.example.taskmanagernew.data.model.Task
 
 interface TaskDao {
 
-    @Query("SELECT*FROM task")
+    @Query("SELECT*FROM task ORDER BY id DESC")
     fun getAllTask():List<Task>
 
         @Insert

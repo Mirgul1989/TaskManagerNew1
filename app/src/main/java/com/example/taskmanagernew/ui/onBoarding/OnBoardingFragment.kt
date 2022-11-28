@@ -1,5 +1,6 @@
 package com.example.taskmanagernew.ui.onBoarding
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,6 @@ class OnBoardingFragment : Fragment() {
     private lateinit var binding: FragmentOnBoardingBinding
     private lateinit var pref: Pref
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,14 +25,13 @@ class OnBoardingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pref=Pref(requireContext())
-        val adapter = OnBoardingAdapter(this::onClick)
-        binding.viewPager.adapter=adapter
-    }
+        pref = Pref(requireActivity())
+        val adapter = OnBoardingAdapter {
+            pref.savedShowBoarding(true)
+            findNavController().navigateUp()
+        }
+        binding.viewPager.adapter = adapter
 
-    private fun onClick(){
-        findNavController().navigateUp()
-        pref.savedShowBoarding(true)
 
     }
 

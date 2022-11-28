@@ -7,7 +7,12 @@ import android.content.SharedPreferences
 class Pref(context:Context) {
 
     private val pref: SharedPreferences=context.getSharedPreferences("pref_name",MODE_PRIVATE)
-    
+    companion object{
+        private const val BOARDING_SHOW="on_boarding.show"
+        private const val NAME_PROFILE="profile.name"
+        private const val AGE_PROFILE="profile.age"
+        private const val IMAGE_PROFILE="profile.image"
+    }
 
 
     fun isBoardingShow():Boolean{
@@ -18,12 +23,7 @@ class Pref(context:Context) {
         pref.edit().putBoolean(BOARDING_SHOW,isShow).apply()
 
     }
-    companion object{
-        private const val BOARDING_SHOW="onboarding.show"
-        private const val NAME_PROFILE="profile.name"
-        private const val AGE_PROFILE="profile.age"
-        private const val IMAGE_PROFILE="profile.image"
-    }
+
 
     fun savedName(name: String){
         pref.edit().putString(NAME_PROFILE,name).apply()

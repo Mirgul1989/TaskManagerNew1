@@ -1,5 +1,5 @@
 package com.example.taskmanagernew.ui.home
-import TaskAdapter
+import com.example.taskmanagernew.ui.home.adapter.TaskAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

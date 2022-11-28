@@ -1,20 +1,24 @@
-
+package com.example.taskmanagernew.ui.home.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanagernew.App
+import com.example.taskmanagernew.R
 import com.example.taskmanagernew.data.model.Task
 import com.example.taskmanagernew.databinding.ItemTaskBinding
 
+@Suppress("DEPRECATION")
 class TaskAdapter(
     private val tasks: ArrayList<Task> = arrayListOf(),
     val context: Context,
     val activity: FragmentActivity?
+
 ) :
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
@@ -31,12 +35,10 @@ class TaskAdapter(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bind(tasks[position])
-    }
+
+       // if (position % 2==0)
 
 
-    fun addTasks(task: Task) {
-        tasks.add(0, task)
-        notifyItemChanged(0)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -54,42 +56,57 @@ class TaskAdapter(
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
-            binding.tvTitle.text = task.title
-            binding.tvDesc.text = task.desc
-            itemView.setOnLongClickListener {
-                dialog(task)
-                return@setOnLongClickListener true
+            if ((position % 1) == 0) {
+                binding.tvTitle.setBackgroundColor(ContextCompat.getColor(context, R.color.black))
+                 }
+            if (position % 1 == 0) {
+                binding.tvDesc.setBackgroundColor(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.white
+                    )
+                )
             }
 
-        }
 
-        private fun dialog(task: Task) {
-            val alertDialog = AlertDialog.Builder(context)
-            alertDialog.setTitle("Delete?")
 
-            alertDialog.setPositiveButton("YES") { dialogInterface, it ->
-                App.db.taskDao().delete(task)
-                taskDelete(task)
-                dialogInterface.dismiss()
-                // activity?.recreate()
-                // notifyDataSetChanged();
-                //DialogInterface.OnDismissListener { }
-            }
-            alertDialog.setNegativeButton(
-                "NO"
-            ) { dialogInterface, it ->
-                dialogInterface.cancel()
+
+                binding.tvTitle.text = task.title
+                binding.tvDesc.text = task.desc
+                itemView.setOnLongClickListener {
+                    dialog(task)
+                    return@setOnLongClickListener true
+                }
+
             }
 
-            alertDialog.show()
+            private fun dialog(task: Task) {
+                val alertDialog = AlertDialog.Builder(context)
+                alertDialog.setTitle("Delete?")
+
+                alertDialog.setPositiveButton("YES") { dialogInterface, _ ->
+                    App.db.taskDao().delete(task)
+                    taskDelete(task)
+                    dialogInterface.dismiss()
+                    // activity?.recreate()
+                    // notifyDataSetChanged();
+                    //DialogInterface.OnDismissListener { }
+                }
+                alertDialog.setNegativeButton(
+                    "NO"
+                ) { dialogInterface, _ ->
+                    dialogInterface.cancel()
+                }
+
+                alertDialog.show()
 
 
-        }
+            }
 
-        private fun taskDelete(task: Task) {
-            tasks.remove(task)
-            notifyDataSetChanged()
+            private fun taskDelete(task: Task) {
+                tasks.remove(task)
+                notifyDataSetChanged()
 
-        }
+            }
 
-    }}
+        }}

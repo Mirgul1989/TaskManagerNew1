@@ -7,24 +7,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanagernew.R
 import com.example.taskmanagernew.data.model.OnBoard
 import com.example.taskmanagernew.databinding.ItemOnBoardingBinding
-import kotlin.reflect.KFunction0
 
-class OnBoardingAdapter(val onClick: KFunction0<Unit>): RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
+class OnBoardingAdapter(val onClick:()->Unit) : RecyclerView.Adapter<OnBoardingAdapter.OnBoardingViewHolder>() {
     private val arrayList = arrayListOf <OnBoard> (
         OnBoard(
-            "",
-            " Задачи на день",
-            "   Можете написать все задачи за 1 день "
+            R.raw.ic_task2,
+            " Отечественный продукт ",
+            "   Каждый этап создания проходил в Кыргызстане, от разработки и до запуска и поддержки "
         ),
         OnBoard(
-            "",
-            " Задачи на месяц ",
-            "Можете написать задачи на месяц"
+            R.raw.ic_task3,
+            " Самый удобный сервис ",
+            "Доступная цена, круглосуточная поддержка,наличный и безналичный расчет"
         ),
         OnBoard(
-            "",
-            " Задачи на год",
-            "Можете написать задачи на год "
+            R.raw.ic_task4,
+            " У нас заботятся об экологии",
+            "  В автопарке абсолюнтно новые машины на газе и электричестве,работают без вреда для окружающей среды "
         )
     )
 
@@ -52,8 +51,8 @@ class OnBoardingAdapter(val onClick: KFunction0<Unit>): RecyclerView.Adapter<OnB
 
     inner class OnBoardingViewHolder(private val binding: ItemOnBoardingBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(onBoard: OnBoard) {
-            binding.root
             binding.btnStart.isVisible = adapterPosition == arrayList.lastIndex
             binding.skip.isVisible = adapterPosition != arrayList.lastIndex
             binding.tvTITLE.text = onBoard.title
@@ -63,22 +62,26 @@ class OnBoardingAdapter(val onClick: KFunction0<Unit>): RecyclerView.Adapter<OnB
                 onClick()
             }
             binding.btnStart.setOnClickListener {
-             onClick()
+                onClick()
             }
+
             if (adapterPosition == 0) {
-                binding.image.setImageResource(R.drawable.ic_task)
+                binding.animationView.setAnimation(R.raw.ic_task2)
+
+                binding.btnBack.isVisible = false
             }
             if (adapterPosition == 1) {
-                binding.image.setImageResource(R.drawable.ic_task1)
+                binding.animationView.setAnimation(R.raw.ic_task3)
+
+                binding.btnBack.isVisible = true
             }
             if (adapterPosition == 2) {
-                binding.image.setImageResource(R.drawable.ic_task2)
+                binding.animationView.setAnimation(R.raw.ic_task4)
+
                 binding.next.isVisible = false
                 binding.btnNext.isVisible = false
                 binding.imageSkip.isVisible = false
             }
         }
 
-
-    }
-}
+    }}

@@ -5,7 +5,6 @@ plugins {
 }
 
 android {
-
     namespace 'com.example.taskmanagernew'
     compileSdk 33
 
@@ -35,7 +34,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-
 }
 
 dependencies {
@@ -48,23 +46,18 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-    implementation 'androidx.test:core-ktx:1.4.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
-//glide
-    implementation 'com.github.bumptech.glide:glide:4.14.2'
-    annotationProcessor  'com.github.bumptech.glide:compiler:4.14.2'
-
-
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
     def room_version = "2.4.3"
-
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
-
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:$room_version"
+    def lottieVersion = "5.2.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }
