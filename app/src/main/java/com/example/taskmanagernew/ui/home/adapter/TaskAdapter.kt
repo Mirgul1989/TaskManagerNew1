@@ -56,22 +56,15 @@ class TaskAdapter(
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
-            if ((position % 1) == 0) {
-                binding.tvTitle.setBackgroundColor(ContextCompat.getColor(context, R.color.black))
-                 }
-
-            if (position % 1 == 0) {
-                binding.tvDesc.setBackgroundColor(
-                    ContextCompat.getColor(
-                        context,
-                        R.color.white
-                    )
-                )
+            if (adapterPosition % 2 == 0) {
+                itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                    binding.tvDesc.setTextColor(ContextCompat.getColor(context, R.color.black))
+                    binding.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.black))
+                 }else{
+                itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.black))
+                binding.tvDesc.setTextColor(ContextCompat.getColor(context, R.color.white))
+                binding.tvTitle.setTextColor(ContextCompat.getColor(context, R.color.white))
             }
-
-
-
-
                 binding.tvTitle.text = task.title
                 binding.tvDesc.text = task.desc
                 itemView.setOnLongClickListener {
